@@ -1,0 +1,14 @@
+{
+  "name": "project77-registration",
+  "version": "1.0.0",
+  "description": "Registration site for Project 77: Let Go, Let God (BatStateU Christian Campus Ministry)",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
