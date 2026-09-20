@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{fullTitle}} | Registration</title>
+  <meta name="description" content="Register for {{fullTitle}}, hosted by the Batangas State University Christian Campus Ministry on {{dateShort}}.">
+  <meta name="theme-color" content="#2f7d6b">
+  <meta property="og:title" content="{{fullTitle}}">
+  <meta property="og:description" content="{{dateShort}}, {{timeRange}}, {{venue}}. Register now.">
+  <meta property="og:image" content="/assets/bg.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='48'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main class="shell">
+
+    <!-- ============ START ============ -->
+    <section id="view-start" class="card view" aria-labelledby="start-title">
+      <p class="org">
+        Batangas State University
+        <span>The National Engineering University, Alangilan</span>
+        <span>Christian Campus Ministry</span>
+      </p>
+
+      <!--IF:project--><p class="project">{{projectName}}</p><!--/IF:project-->
+      <h1 id="start-title" class="title {{titleClass}}" tabindex="-1">{{titleHtml}}</h1>
+
+      <!--IF:banner-->
+      <figure class="inspo">
+        <button type="button" class="inspo-btn" id="btn-inspo" aria-haspopup="dialog" aria-label="Enlarge the biblical inspiration and core message">
+          <img src="/assets/info.jpg" width="1080" height="280" alt="Biblical inspiration, Matthew 18:22: I tell you, not seven times, but seventy-seven times. Core message: letting go of burdens, trusting God's grace, and surrendering what we cannot control to God.">
+        </button>
+        <figcaption>Tap the image to enlarge</figcaption>
+      </figure>
+      <!--/IF:banner-->
+
+      <dl class="when">
+        <div><dt>Date</dt><dd>{{dateLong}}</dd></div>
+        <div><dt>Time</dt><dd>{{timeRange}}</dd></div>
+        <div><dt>Venue</dt><dd>{{venue}}</dd></div>
+      </dl>
+
+      <!--IF:open--><button type="button" class="btn" id="btn-start">Register now</button><!--/IF:open-->
+      <!--IF:closed--><p class="closed" role="status">{{closedMessage}}</p><!--/IF:closed-->
+      <!--IF:tagline--><p class="tagline">{{tagline}}</p><!--/IF:tagline-->
+    </section>
+
+    <!-- ============ FORM ============ -->
+    <section id="view-form" class="card view" aria-labelledby="form-title" hidden>
+      <button type="button" class="back" id="btn-back">&larr; Back</button>
+      <h2 id="form-title" class="h2" tabindex="-1">Registration form</h2>
+      <p class="lead">{{fullTitle}} &mdash; {{dateShort}}. Fill in your details below.</p>
+
+      <form id="form" novalidate autocomplete="on">
+        <div class="alert" id="form-alert" role="alert" hidden></div>
+
+        <div class="field" data-field="fullName">
+          <label for="fullName">Full name</label>
+          <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="e.g. Juan Miguel Dela Cruz" maxlength="100" required>
+          <p class="err" id="err-fullName" aria-live="polite"></p>
+        </div>
+
+        <div class="row">
+          <div class="field grow" data-field="course">
+            <label for="course">Course / program</label>
+            <input id="course" name="course" type="text" placeholder="e.g. BS Computer Engineering" maxlength="100" required>
+            <p class="err" id="err-course" aria-live="polite"></p>
+          </div>
+          <div class="field" data-field="yearLevel">
+            <label for="yearLevel">Year level</label>
+            <select id="yearLevel" name="yearLevel" required>
+              <option value="">Select</option>
+              <option>1st Year</option>
+              <option>2nd Year</option>
+              <option>3rd Year</option>
+              <option>4th Year</option>
+              <option>5th Year</option>
+            </select>
+            <p class="err" id="err-yearLevel" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="field" data-field="section">
+          <label for="section">Section</label>
+          <input id="section" name="section" type="text" placeholder="e.g. 3101" maxlength="30" required>
+          <p class="err" id="err-section" aria-live="polite"></p>
+        </div>
+
+        <div class="field" data-field="contact">
+          <label for="contact">Contact number</label>
+          <input id="contact" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX" maxlength="20" required>
+          <p class="err" id="err-contact" aria-live="polite"></p>
+        </div>
+
+        <div class="field" data-field="email">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@g.batstate-u.edu.ph" maxlength="254" required>
+          <p class="err" id="err-email" aria-live="polite"></p>
+        </div>
+
+        <fieldset class="field" data-field="attendance">
+          <legend>Confirmation of attendance</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="attendance" value="yes">
+              <span>Yes, I will attend</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="attendance" value="no">
+              <span>No, I cannot attend</span>
+            </label>
+          </div>
+          <p class="err" id="err-attendance" aria-live="polite"></p>
+        </fieldset>
+
+        <!-- honeypot: hidden from people, tempting to bots -->
+        <div class="hp" aria-hidden="true">
+          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <button type="submit" class="btn" id="btn-submit">Submit registration</button>
+      </form>
+    </section>
+
+    <!-- ============ DONE ============ -->
+    <section id="view-done" class="card view wide" aria-labelledby="done-title" hidden>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h2 id="done-title" class="h2 center" tabindex="-1">You're registered!</h2>
+      <p class="lead center" id="done-message"></p>
+      <p class="ref center" id="done-ref"></p>
+
+      <div class="cert-wrap">
+        <canvas id="cert" width="1754" height="1240" role="img" aria-label="Your certificate"></canvas>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn" id="btn-png">Download certificate (PNG)</button>
+        <button type="button" class="btn ghost" id="btn-pdf">Download as PDF</button>
+      </div>
+      <button type="button" class="linkbtn" id="btn-again">Register another person</button>
+    </section>
+
+  </main>
+
+
+  <!--IF:banner-->
+  <dialog id="dlg-inspo" class="lightbox" aria-label="Biblical inspiration and core message">
+    <button type="button" class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+    <div class="lb-scroll">
+      <img src="/assets/info.jpg" width="1080" height="280" alt="Biblical inspiration, Matthew 18:22: I tell you, not seven times, but seventy-seven times. Core message: letting go of burdens, trusting God's grace, and surrendering what we cannot control to God.">
+    </div>
+    <p class="lb-hint">Swipe sideways to read the full text.</p>
+  </dialog>
+  <!--/IF:banner-->
+
+  <footer class="foot">
+    Christian Campus Ministry<!--IF:contact--> &nbsp;|&nbsp;
+    <a href="mailto:{{contactEmail}}">{{contactEmail}}</a><!--/IF:contact-->
+  </footer>
+
+  <script type="application/json" id="event-data">{{eventJson}}</script>
+  <script src="/cert.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
